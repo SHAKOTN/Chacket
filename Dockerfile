@@ -13,6 +13,8 @@ ADD requirements/requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 RUN rm -f /app/requirements.txt
 
+EXPOSE 8000
+
 ADD chacket /app/chacket
 ADD .env /app/.env
 
