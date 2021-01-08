@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  chacket:
+    build:
+      context: .
+      target: local
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    networks:
+      - default
+    command: []
+    restart: on-failure:5
+    volumes:
+      - .:/app
