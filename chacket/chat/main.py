@@ -1,3 +1,4 @@
+import os
 from typing import List
 
 from fastapi import FastAPI
@@ -9,7 +10,11 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="chacket/chat/static"), name="static")
+app.mount("/static", StaticFiles(
+    directory=os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        "chat/static")
+), name="static")
 templates = Jinja2Templates(directory="chacket/chat/templates")
 
 
