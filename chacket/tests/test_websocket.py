@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from chacket.chat.main import app
+from chacket.main import app
 
 
 def test_websocket_chat_init():

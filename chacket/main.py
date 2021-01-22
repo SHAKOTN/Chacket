@@ -10,12 +10,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-app.mount("/static", StaticFiles(
-    directory=os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
-        "chat/static")
-), name="static")
-templates = Jinja2Templates(directory="chacket/chat/templates")
+app.mount("/static", StaticFiles(directory=os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "chacket/static")), name="static")
+templates = Jinja2Templates(directory=os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "chacket/templates"
+))
 
 
 class ConnectionManager:
