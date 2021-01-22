@@ -25,5 +25,7 @@ ADD requirements/requirements-test.txt /app/requirements-test.txt
 RUN pip install -r /app/requirements-test.txt
 RUN rm -f /app/requirements-test.txt
 
+FROM base as test
+
 FROM base as production
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
