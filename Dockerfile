@@ -4,7 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONPATH=/app
 
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev bash
+RUN apk update && apk add gcc bash musl-dev
 
 RUN pip install --upgrade pip
 RUN pip install dumb-init==1.2.2

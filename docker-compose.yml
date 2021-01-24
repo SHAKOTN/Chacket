@@ -6,6 +6,8 @@ services:
       context: .
       target: local
       dockerfile: Dockerfile
+    depends_on:
+      - redis
     ports:
     - "8000:8000"
     env_file:
@@ -16,3 +18,9 @@ services:
     restart: on-failure:5
     volumes:
       - .:/app
+  redis:
+    image: redis:6.0.10-alpine
+    ports:
+      - 6379:6379
+    volumes:
+    - ./data:/data
