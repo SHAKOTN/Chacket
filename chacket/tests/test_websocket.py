@@ -1,9 +1,15 @@
 from starlette.testclient import TestClient
 
 
+def test_get_basic_endpoint(chacket_app):
+    with TestClient(chacket_app) as client:
+        response = client.get("/")
+        assert 200 == response.status_code
+        assert response.is_redirect is False
+
+
 def test_websocket_chat_init(chacket_app):
-    client = TestClient(chacket_app)
-    with client.websocket_connect("/ws/123") as websocket:
+    with TestClient(chacket_app).websocket_connect("/ws/123") as websocket:
         # Get initial message with info about users in chat
         data = websocket.receive_text()
         assert "There are 0 active users in chat at the moment" == data

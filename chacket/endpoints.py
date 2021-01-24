@@ -42,7 +42,6 @@ manager = ConnectionManager()
 
 @router.get("/", response_class=HTMLResponse)
 async def get(request: Request):
-
     return templates.TemplateResponse("chat.html", context={'request': request})
 
 
