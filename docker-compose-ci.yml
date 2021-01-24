@@ -6,10 +6,25 @@ services:
       context: .
       target: local
       dockerfile: Dockerfile
-    ports:
-    - "8000:8000"
+    depends_on:
+      - redis
+    links:
+      - redis
     env_file:
       - .env
+    ports:
+    - "8000:8000"
     networks:
       - default
+    command: ["uvicorn", "chacket.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
     restart: on-failure:5
+    volumes:
+      - .:/app
+  redis:
+    image: redis:6.0.10-alpine
+    ports:
+      - 6379:6379
+    networks:
+      - default
+    volumes:
+    - ./data:/data
