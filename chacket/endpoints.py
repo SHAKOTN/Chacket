@@ -1,12 +1,11 @@
 import os
 from typing import List
 
+from fastapi import APIRouter
 from fastapi import Request
 from fastapi import WebSocket
 from fastapi import WebSocketDisconnect
 from fastapi.responses import HTMLResponse
-
-from fastapi import APIRouter
 from starlette.templating import Jinja2Templates
 
 router = APIRouter()
