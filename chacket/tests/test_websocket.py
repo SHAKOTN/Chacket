@@ -1,10 +1,8 @@
 from starlette.testclient import TestClient
 
-from chacket.main import app
 
-
-def test_websocket_chat_init():
-    client = TestClient(app)
+def test_websocket_chat_init(chacket_app):
+    client = TestClient(chacket_app)
     with client.websocket_connect("/ws/123") as websocket:
         # Get initial message with info about users in chat
         data = websocket.receive_text()
