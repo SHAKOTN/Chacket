@@ -29,4 +29,10 @@ jobs:
       run: docker ps
 
     - name: Run tests
-      run: docker-compose -f docker-compose-ci.yml run chacket pytest --cov=.
+      run: docker-compose -f docker-compose-ci.yml run chacket pytest --cov-report xml:cov.xml --cov=.
+    
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./cov.xml
