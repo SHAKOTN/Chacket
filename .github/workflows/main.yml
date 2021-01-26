@@ -1,7 +1,9 @@
 name: Execute Tests
 on:
   pull_request:
-  push: { branches: main }
+  push:
+    branches: 
+      - '*'
 
 jobs:
   test:
@@ -29,4 +31,8 @@ jobs:
       run: docker ps
 
     - name: Run tests
-      run: docker-compose -f docker-compose-ci.yml run chacket pytest --cov=.
+      run: docker-compose -f docker-compose-ci.yml run chacket pytest --cov=./ --cov-report=xml
+    
+    - uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
