@@ -31,7 +31,7 @@ jobs:
       run: docker ps
 
     - name: Run tests
-      run: docker-compose -f docker-compose-ci.yml run chacket pytest --cov=./
+      run: docker-compose -f docker-compose-ci.yml run chacket pytest --cov=./ --cov-report=xml
     
     - uses: codecov/codecov-action@v1
       with:
